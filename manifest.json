@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Avito Seller Info",
+  "version": "2.1",
+  "description": "Показывает полную информацию о продавце и товаре в модальном окне на Avito",
+  "permissions": ["storage", "activeTab"],
+  "host_permissions": ["https://www.avito.ru/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.avito.ru/*"],
+      "js": ["content-script.js"],
+      "css": ["styles.css"]
+    }
+  ]
+}

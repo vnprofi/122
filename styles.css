@@ -1,0 +1,245 @@
+.avito-seller-info-button {
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin-left: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.avito-seller-info-button:hover {
+  background: #e0e0e0;
+}
+
+.avito-seller-info-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2147483647;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.avito-seller-info-modal-content {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  width: 80%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-header {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #000;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #999;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  color: #000;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-body h3 {
+  margin: 0 0 15px;
+  font-size: 18px;
+  color: #000;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 8px;
+}
+
+.modal-body p {
+  margin: 8px 0;
+  color: #333;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.modal-body p strong {
+  color: #000;
+  min-width: 140px;
+  display: inline-block;
+}
+
+.description-text {
+  margin-top: 5px;
+  white-space: pre-wrap;
+  line-height: 1.5;
+  font-size: 13px;
+}
+
+.product-info, .seller-info, .product-params, .additional-info {
+  margin-bottom: 30px;
+}
+
+.badges {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.badge {
+  display: inline-block;
+  background: #e6f7ff;
+  color: #1890ff;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid #91d5ff;
+}
+
+.photos {
+  margin-bottom: 30px;
+}
+
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.photo-thumb {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #eee;
+}
+
+.additional-info ul, .product-params ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.additional-info li, .product-params li {
+  margin: 5px 0;
+  font-size: 13px;
+  color: #555;
+}
+
+.product-params li strong {
+  color: #000;
+  min-width: 100px;
+  display: inline-block;
+}
+
+/* Стили для блока характеристик */
+.product-params .params-content {
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 15px;
+  margin-top: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.params-text {
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 15px;
+  margin-top: 10px;
+  white-space: pre-wrap;
+  font-family: monospace;
+  font-size: 12px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Стили для элементов внутри блока характеристик */
+.product-params h2 {
+  font-size: 16px;
+  margin: 0 0 10px;
+  color: #333;
+}
+
+.product-params ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.product-params li {
+  padding: 5px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.product-params li:last-child {
+  border-bottom: none;
+}
+
+.product-params .Lg7Ax {
+  font-weight: bold;
+  color: #000;
+  margin-right: 5px;
+}
+
+/* Стили для таблицы характеристик */
+.bx_detail_chars {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.bx_detail_chars td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.bx_detail_chars tr:last-child td {
+  border-bottom: none;
+}
+
+.bx_detail_chars .Lg7Ax {
+  font-weight: bold;
+  color: #000;
+  width: 40%;
+}
+
+/* Стили для модального окна загрузки */
+.avito-seller-info-modal.loading .modal-body {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.avito-seller-info-modal.loading .modal-body p {
+  font-size: 16px;
+  color: #666;
+}
