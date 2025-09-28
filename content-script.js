@@ -420,6 +420,64 @@
         }
       })();
 
+      // Стоимость владения (со страницы товара)
+      (function parseOwnershipCostFromItemPage() {
+        try {
+          const header = Array.from(doc.querySelectorAll('h2')).find(h => /Стоимость владения/i.test(h.textContent || ''));
+          if (!header) return;
+
+          const outerContainer = header.closest('div.zvIlg') || header.closest('section') || header.closest('div');
+          if (!outerContainer) return;
+
+          // Ищем dl со списком
+          const dl = outerContainer.querySelector('dl.KuPdj.UTb3i') || outerContainer.querySelector('dl');
+          if (!dl) return;
+
+          const items = [];
+
+          // Предпочитаем блочную разметку div.WQrI5.rPK0d (если есть)
+          const blocks = Array.from(dl.querySelectorAll('div.WQrI5.rPK0d'));
+          if (blocks.length) {
+            blocks.forEach(div => {
+              const dtEl = div.querySelector('dt') || div.querySelector('dt.ANieu.VtHX8._i_Gl');
+              const ddEl = div.querySelector('dd') || div.querySelector('dd.VtHX8.FQm9P');
+              const name = dtEl ? safeText(dtEl) : '';
+              const value = ddEl ? safeText(ddEl) : '';
+              if (name && value) items.push({ name, value });
+            });
+          } else {
+            // Резервный вариант: пары dt/dd внутри dl
+            const dts = Array.from(dl.querySelectorAll('dt'));
+            dts.forEach(dt => {
+              const parent = dt.parentElement;
+              let dd = null;
+              if (parent) dd = parent.querySelector('dd');
+              if (!dd && dt.nextElementSibling && dt.nextElementSibling.tagName === 'DD') {
+                dd = dt.nextElementSibling;
+              }
+              const name = safeText(dt);
+              const value = safeText(dd);
+              if (name && value) items.push({ name, value });
+            });
+          }
+
+          if (!items.length) return;
+
+          const period = safeText(outerContainer.querySelector('[role="tab"][aria-selected="true"]'));
+
+          let explanation = safeText(outerContainer.querySelector('p.T7ujv.XXczS.DdkRY.cujIu.kVdGi'));
+          if (!explanation) {
+            const pTexts = Array.from(outerContainer.querySelectorAll('p')).map(p => safeText(p)).filter(Boolean);
+            const found = pTexts.find(t => /Примерные расходы|содержан/i.test(t));
+            if (found) explanation = found;
+          }
+
+          const links = Array.from(outerContainer.querySelectorAll('a')).map(a => ({ text: safeText(a), href: a.href || '' })).filter(l => l.text);
+
+          extra.ownershipCost = { period, items, explanation, links };
+        } catch (_) {}
+      })();
+
     } catch (e) {
       console.warn('Ошибка при парсинге данных продавца:', e);
     }
